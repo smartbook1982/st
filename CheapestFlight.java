@@ -60,7 +60,7 @@ class Solution {
 
 class Solution {
   public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
-    final int kInfCost = 1<<30;
+    final int kInfCost = Integer.MAX_VALUE/2;
     int[] cost = new int[n];
     Arrays.fill(cost, kInfCost);
     cost[src] = 0;
