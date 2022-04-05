@@ -57,3 +57,21 @@ class Solution {
         return prices[dst] == Integer.MAX_VALUE ? -1 : prices[dst];
     }
 }
+
+class Solution {
+  public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
+    final int kInfCost = 1<<30;
+    int[] cost = new int[n];
+    Arrays.fill(cost, kInfCost);
+    cost[src] = 0;
+    
+    for (int i = 0; i <= K; ++i) {
+      int[] tmp = cost.clone();
+      for(int[] p: flights)
+        tmp[p[1]] = Math.min(tmp[p[1]], cost[p[0]] + p[2]);
+      cost = tmp;
+    }
+    
+    return cost[dst] >= kInfCost ? -1 : cost[dst]; 
+  }
+}
